@@ -4,8 +4,9 @@ module Api
     before_action :default_json
 
     def current_user
-      return nil unless params[:auth_token]
-      User.find_by authentication_token: params[:auth_token]
+      auth_token = request.headers["X-AUTH-TOKEN"] || params[:auth_token]
+      return nil unless auth_token
+      User.find_by authentication_token: auth_token
     end
 
     protected

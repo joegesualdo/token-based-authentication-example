@@ -1,5 +1,6 @@
 module Api
   class UsersController < BaseController
+    # User needs to be authorized before accessing any actions
     before_action :auth_only!
 
     def index
